@@ -1,0 +1,83 @@
+### Text files ###
+
+## Catch-All
+* text=auto
+
+## Special text file
+*.sh text eol=lf
+
+### Binary files ###
+
+## VPMS
+*.PMS binary
+*.VPM binary
+*.pms binary
+*.vpm binary
+
+## Documents
+*.doc	 binary
+*.DOC	 binary
+*.docx binary
+*.DOCX binary
+*.dot binary
+*.DOT binary
+*.pdf binary
+*.PDF	 binary
+
+## Graphics
+*.bmp binary
+*.eps binary
+*.gif binary
+*.ico binary
+*.jpg binary
+*.jpeg binary
+*.png binary
+*.tif binary
+*.tiff binary
+
+## AUDIO
+*.m4a binary
+*.mid binary
+*.midi binary
+*.mp3 binary
+*.ogg binary
+
+## VIDEO
+*.3gpp binary
+*.3gp binary
+*.asf binary
+*.asx binary
+*.fla binary
+*.flv binary
+*.m4v binary
+*.mng binary
+*.mov binary
+*.mp4 binary
+*.mpeg binary
+*.mpg binary
+*.swc binary
+*.swf binary
+
+## ARCHIVES
+*.7z binary
+*.gz binary
+*.rar binary
+*.tar binary
+*.zip binary
+*.jar binary
+*.war binary
+*.ear binary
+
+## EXECUTABLES
+*.exe binary
+*.pyc binary
+*.com binary
+*.dll binary
+*.so binary
+*.class binary
+
+## Compiled objects
+*.a binary
+*.o binary
+*.obj binary
+*.lib binary

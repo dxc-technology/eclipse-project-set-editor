@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<plugin
+   id="com.csc.dip.projectset"
+   name="Projectset Plug-in"
+   version="1.0.0"
+   provider-name="CSC SoftwareConsult GmbH + Co OHG"
+   class="com.csc.dip.projectset.ProjectSetPlugin">
+
+   <runtime>
+      <library name="projectset.jar"/>
+   </runtime>
+   <requires>
+      <import plugin="org.eclipse.core.resources"/>
+      <import plugin="org.eclipse.ui"/>
+      <import plugin="org.eclipse.team.core"/>
+      <import plugin="org.eclipse.team.ui"/>
+      <import plugin="org.apache.xerces"/>
+   </requires>
+
+
+   <extension
+         point="org.eclipse.ui.editors">
+      <editor
+            name="Project Set Editor"
+            default="true"
+            icon="icons/psffile.gif"
+            extensions="psf"
+            launcher="com.csc.dip.projectset.ui.ProjectSetEditorLauncher"
+            id="ProjectSetEditorLauncher">
+      </editor>
+   </extension>
+</plugin>

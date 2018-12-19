@@ -1,0 +1,15 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: %pluginName
+Bundle-SymbolicName: com.csc.dip.projectset; singleton:=true
+Bundle-Version: 9.6.2
+Bundle-Activator: com.csc.dip.projectset.ProjectSetPlugin
+Bundle-Vendor: %providerName
+Bundle-Localization: plugin
+Export-Package: com.csc.dip.projectset
+Require-Bundle: org.eclipse.core.runtime,
+ org.eclipse.core.resources,
+ org.eclipse.team.core
+Bundle-ActivationPolicy: lazy
+Bundle-ClassPath: .
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8

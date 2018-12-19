@@ -1,0 +1,17 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: %nlFragmentName
+Bundle-SymbolicName: com.csc.dip.projectset.nl1; singleton:=true
+Bundle-Version: 9.6.2
+Bundle-ClassPath: src/
+Bundle-Vendor: %nlProviderName
+Fragment-Host: com.csc.dip.projectset
+Bundle-Localization: nl_fragment
+Require-Bundle: org.eclipse.ui.ide,
+ org.eclipse.ui.views,
+ org.eclipse.jface.text,
+ org.eclipse.ui.workbench.texteditor,
+ org.eclipse.ui.editors,
+ org.eclipse.core.resources,
+ org.eclipse.ui
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8

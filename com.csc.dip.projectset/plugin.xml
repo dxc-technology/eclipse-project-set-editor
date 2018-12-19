@@ -1,32 +1,140 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<plugin
-   id="com.csc.dip.projectset"
-   name="Projectset Plug-in"
-   version="1.0.0"
-   provider-name="CSC SoftwareConsult GmbH + Co OHG"
-   class="com.csc.dip.projectset.ProjectSetPlugin">
+<?eclipse version="3.0"?>
+<plugin>
 
-   <runtime>
-      <library name="projectset.jar"/>
-   </runtime>
-   <requires>
-      <import plugin="org.eclipse.core.resources"/>
-      <import plugin="org.eclipse.ui"/>
-      <import plugin="org.eclipse.team.core"/>
-      <import plugin="org.eclipse.team.ui"/>
-      <import plugin="org.apache.xerces"/>
-   </requires>
-
+   <extension-point id="projectReferenceAnalyser" name="Project Reference Analyser" schema="schema/projectReferenceAnalyser.exsd"/>
 
    <extension
-         point="org.eclipse.ui.editors">
-      <editor
-            name="Project Set Editor"
-            default="true"
-            icon="icons/psffile.gif"
-            extensions="psf"
-            launcher="com.csc.dip.projectset.ui.ProjectSetEditorLauncher"
-            id="ProjectSetEditorLauncher">
-      </editor>
+         id="ProjectSetNature"
+         name="%nature.ProjectSetNature"
+         point="org.eclipse.core.resources.natures">
+      <runtime>
+         <run
+               class="com.csc.dip.projectset.ProjectSetNature">
+         </run>
+      </runtime>
    </extension>
+   <extension
+         id="ProjectSetBuilder"
+         name="%builder.ProjectSetBuilder"
+         point="org.eclipse.core.resources.builders">
+      <builder>
+         <run
+               class="com.csc.dip.projectset.ProjectSetBuilder">
+         </run>
+      </builder>
+   </extension>
+   <extension
+         id="PsfMarker"
+         name="%marker.ProjectSetProblem"
+         point="org.eclipse.core.resources.markers">
+      <persistent
+            value="true">
+      </persistent>
+      <super
+            type="org.eclipse.core.resources.problemmarker">
+      </super>
+      <attribute
+            name="message">
+      </attribute>
+   </extension>
+   <extension
+         id="PsfTagConflictMarker"
+         name="%marker.ProjectSetTagConflict"
+         point="org.eclipse.core.resources.markers">
+      <persistent
+            value="true">
+      </persistent>
+      <super
+            type="com.csc.dip.projectset.PsfMarker">
+      </super>
+      <attribute
+            name="message">
+      </attribute>
+   </extension>
+   <extension
+         id="PsfPathConflictMarker"
+         name="%marker.ProjectSetPathConflict"
+         point="org.eclipse.core.resources.markers">
+      <persistent
+            value="true">
+      </persistent>
+      <super
+            type="com.csc.dip.projectset.PsfMarker">
+      </super>
+      <attribute
+            name="message">
+      </attribute>
+   </extension>
+   <extension
+         id="PsfNotLoadedMarker"
+         name="%marker.ProjectSetNotLoaded"
+         point="org.eclipse.core.resources.markers">
+      <persistent
+            value="true">
+      </persistent>
+      <super
+            type="com.csc.dip.projectset.PsfMarker">
+      </super>
+      <attribute
+            name="message">
+      </attribute>
+   </extension>
+   <extension
+         id="PsfNotLoadedToPreferredMarker"
+         name="%marker.ProjectSetNotLoadedToPreferred"
+         point="org.eclipse.core.resources.markers">
+      <persistent
+            value="true">
+      </persistent>
+      <super
+            type="com.csc.dip.projectset.PsfMarker">
+      </super>
+      <attribute
+            name="message">
+      </attribute>
+   </extension>
+   <extension
+         id="PsfErrorMarker"
+         name="%marker.ProjectSetError"
+         point="org.eclipse.core.resources.markers">
+      <persistent
+            value="true">
+      </persistent>
+      <super
+            type="com.csc.dip.projectset.PsfMarker">
+      </super>
+      <attribute
+            name="message">
+      </attribute>
+   </extension>
+   <extension
+         point="org.eclipse.team.core.fileTypes">
+      <fileTypes
+            type="text"
+            extension="psf">
+      </fileTypes>
+      <fileTypes
+            type="text"
+            extension="psproject">
+      </fileTypes>
+      <fileTypes
+            type="text"
+            extension="ppl">
+      </fileTypes>
+   </extension>
+   <extension
+         point="org.eclipse.core.runtime.preferences">
+      <initializer
+            class="com.csc.dip.projectset.ProjectSetPreferenceInitializer">
+      </initializer>
+   </extension>
+   <!--
+   <extension
+         point="org.eclipse.pde.core.source">
+      <location
+            path="src">
+      </location>
+   </extension>
+   -->
 </plugin>

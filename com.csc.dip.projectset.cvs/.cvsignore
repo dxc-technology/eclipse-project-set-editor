@@ -1,0 +1,6 @@
+bin
+build.xml
+projectsetcvs.jar
+temp.folder
+com.csc.dip.projectset.cvs*.jar
+target

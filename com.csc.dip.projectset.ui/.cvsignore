@@ -1,0 +1,11 @@
+bin
+temp.folder
+build.xml
+projectsetui.jar
+projectsetuisrc.zip
+javaCompiler.projectsetui.jar.args
+javaCompiler...args
+com.csc.dip.projectset.ui_*.jar
+@dot
+.settings
+target

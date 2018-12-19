@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+<fragment>
+   <extension
+         id="CVSProjectReferenceAnalyser"
+         name="CVS Project Reference Analyser"
+         point="com.csc.dip.projectset.projectReferenceAnalyser">
+      <projectReferenceAnalyser
+            class="com.csc.dip.projectset.ccvs.CVSProjectReferenceAnalyser"
+            provider="org.eclipse.team.cvs.core.cvsnature">
+      </projectReferenceAnalyser>
+   </extension>
+</fragment>

@@ -1,0 +1,121 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!-- Schema file written by PDE -->
+<schema targetNamespace="com.csc.dip.projectset" xmlns="http://www.w3.org/2001/XMLSchema">
+<annotation>
+      <appInfo>
+         <meta.schema plugin="com.csc.dip.projectset" id="projectReferenceAnalyser" name="Project Reference Analyser"/>
+      </appInfo>
+      <documentation>
+         [Enter description of this extension point]
+      </documentation>
+   </annotation>
+
+   <element name="extension">
+      <annotation>
+         <appInfo>
+            <meta.element />
+         </appInfo>
+      </annotation>
+      <complexType>
+         <sequence>
+            <element ref="projectReferenceAnalyser"/>
+         </sequence>
+         <attribute name="point" type="string" use="required">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="id" type="string">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="name" type="string">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+
+   <element name="projectReferenceAnalyser">
+      <complexType>
+         <attribute name="class" type="string" use="required">
+            <annotation>
+               <documentation>
+                  The class that implements the interface com.csc.dip.projectset.IProjectReferenceAnalyser.
+               </documentation>
+               <appInfo>
+                  <meta.attribute kind="java"/>
+               </appInfo>
+            </annotation>
+         </attribute>
+         <attribute name="provider" type="string" use="required">
+            <annotation>
+               <documentation>
+                  The id of the team privider.
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="preferredLocalDirNotSupported" type="boolean">
+            <annotation>
+               <documentation>
+                  This flag indicates if the Preferred Local Directory is not supported by the associated team provider.
+               </documentation>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+
+   <annotation>
+      <appInfo>
+         <meta.section type="examples"/>
+      </appInfo>
+      <documentation>
+         &lt;p&gt;&lt;samp&gt;&amp;lt;extension&lt;/samp&gt;&lt;br&gt;
+&lt;samp&gt;&amp;nbsp;&amp;nbsp;id=&amp;quot;CVSProjectReferenceAnalyser&amp;quot;&lt;/samp&gt;&lt;br&gt;
+&lt;samp&gt;&amp;nbsp;&amp;nbsp;name=&amp;quot;CVS Project Reference Analyser&amp;quot;&lt;/samp&gt;&lt;br&gt;
+&lt;samp&gt;&amp;nbsp;&amp;nbsp;point=&amp;quot;com.csc.dip.projectset.projectReferenceAnalyser&amp;quot;&amp;gt;&lt;/samp&gt;&lt;br&gt;
+&lt;samp&gt;&amp;nbsp;&amp;nbsp;&amp;lt;projectReferenceAnalyser&lt;/samp&gt;&lt;br&gt;
+&lt;samp&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;class=&amp;quot;com.csc.dip.projectset.ccvs.CVSProjectReferenceAnalyser&amp;quot;&lt;/samp&gt;&lt;br&gt;
+&lt;samp&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;provider=&amp;quot;org.eclipse.team.cvs.core.cvsnature&amp;quot;&amp;gt;&lt;/samp&gt;&lt;br&gt;
+&lt;samp&gt;&amp;nbsp;&amp;nbsp;&amp;lt;/projectReferenceAnalyser&amp;gt;&lt;/samp&gt;&lt;br&gt;
+&lt;samp&gt;&amp;lt;/extension&amp;gt;&lt;/samp&gt;&lt;br&gt;
+      </documentation>
+   </annotation>
+
+   <annotation>
+      <appInfo>
+         <meta.section type="apiInfo"/>
+      </appInfo>
+      <documentation>
+         [Enter API information here.]
+      </documentation>
+   </annotation>
+
+   <annotation>
+      <appInfo>
+         <meta.section type="implementation"/>
+      </appInfo>
+      <documentation>
+         [Enter information about supplied implementation of this extension
+point.]
+      </documentation>
+   </annotation>
+
+   <annotation>
+      <appInfo>
+         <meta.section type="copyright"/>
+      </appInfo>
+      <documentation>
+         DXC Technology Deutschland GmbH
+      </documentation>
+   </annotation>
+
+</schema>

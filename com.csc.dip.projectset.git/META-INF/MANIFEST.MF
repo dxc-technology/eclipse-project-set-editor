@@ -1,0 +1,13 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: %fragmentName
+Bundle-SymbolicName: com.csc.dip.projectset.git;singleton:=true
+Bundle-Version: 9.6.2
+Bundle-Vendor: %providerName
+Bundle-Localization: fragment
+Bundle-ActivationPolicy: lazy
+Bundle-ClassPath: .
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Fragment-Host: com.csc.dip.projectset
+Export-Package: com.csc.dip.projectset.git;uses:="com.csc.dip.projectset"
+

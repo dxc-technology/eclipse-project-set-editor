@@ -1,0 +1,6 @@
+build.xml
+com.csc.dip.projectset.feature_*.bin.dist.zip
+${buildOutputFile}
+com.csc.dip.projectset_*.jar
+.settings
+target

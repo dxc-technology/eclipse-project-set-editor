@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
+	xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>com.csc.dip</groupId>
+	<artifactId>com.csc.dip.projectset-parent</artifactId>
+	<version>9.6.2</version>
+
+	<packaging>pom</packaging>
+
+	<properties>
+		<tycho-version>1.2.0</tycho-version>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<maven.compiler.source>1.8</maven.compiler.source>
+		<maven.compiler.target>1.8</maven.compiler.target>
+	</properties>
+
+	<repositories>
+		<repository>
+			<id>photon</id>
+			<layout>p2</layout>
+			<url>http://download.eclipse.org/releases/photon</url>
+		</repository>
+	</repositories>
+
+
+	<modules>
+		<module>com.csc.dip.projectset</module> 
+		<module>com.csc.dip.projectset.nl1</module> 
+		<module>com.csc.dip.projectset-feature</module>
+		<module>com.csc.dip.projectset.cvs</module>
+		<module>com.csc.dip.projectset.svn</module>
+		<module>com.csc.dip.projectset.ui</module>
+		<module>com.csc.dip.projectset.ui.nl1</module>
+		<module>com.csc.dip.projectset-repository</module>
+		<module>com.csc.dip.projectset.git</module>
+	</modules>
+
+	
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.eclipse.tycho</groupId>
+				<artifactId>tycho-maven-plugin</artifactId>
+				<version>${tycho-version}</version>
+				<extensions>true</extensions>
+			</plugin>
+			<plugin>
+			  <groupId>org.eclipse.tycho</groupId>
+			  <artifactId>tycho-compiler-plugin</artifactId>
+			  <version>${tycho-version}</version>
+			  <configuration>
+			    <useProjectSettings>false</useProjectSettings>
+			  </configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.eclipse.tycho</groupId>
+				<artifactId>target-platform-configuration</artifactId>
+				<version>${tycho-version}</version>
+				<configuration>
+					<resolver>p2</resolver>
+					<pomDependencies>consider</pomDependencies>
+					<environments>
+						<environment>
+							<os>win32</os>
+							<ws>win32</ws>
+							<arch>x86</arch>
+						</environment>
+						<environment>
+							<os>linux</os>
+							<ws>gtk</ws>
+							<arch>x86_64</arch>
+						</environment>
+					</environments>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+</project>

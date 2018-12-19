@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+<fragment>
+   <extension
+         id="SVNSubclipseProjectReferenceAnalyser"
+         name="SVN Subclipse Project Reference Analyser"
+         point="com.csc.dip.projectset.projectReferenceAnalyser">
+      <projectReferenceAnalyser
+            class="com.csc.dip.projectset.svn.SVNProjectReferenceAnalyser"
+            provider="org.tigris.subversion.subclipse.core.svnnature"/>
+   </extension>
+   <extension
+         id="SVNSubversiveProjectReferenceAnalyser"
+         name="SVN Subversive Project Reference Analyser"
+         point="com.csc.dip.projectset.projectReferenceAnalyser">
+      <projectReferenceAnalyser
+            class="com.csc.dip.projectset.svn.SVNProjectReferenceAnalyser"
+            provider="org.eclipse.team.svn.core.svnnature">
+      </projectReferenceAnalyser>
+   </extension>
+</fragment>

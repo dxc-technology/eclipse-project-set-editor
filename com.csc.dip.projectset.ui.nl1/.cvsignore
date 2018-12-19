@@ -1,0 +1,9 @@
+bin
+temp.folder
+build.xml
+nl1.jar
+javaCompiler.$nl$_.args
+javaCompiler...args
+com.csc.dip.projectset.ui.nl1_*.jar
+.settings
+target

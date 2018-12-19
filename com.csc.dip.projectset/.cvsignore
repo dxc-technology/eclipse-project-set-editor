@@ -1,0 +1,11 @@
+bin
+build.xml
+projectset.jar
+temp.folder
+com.csc.dip.projectset_*.jar
+projectsetsrc.zip
+com.csc.dip.projectset_*.zip
+javaCompiler.projectset.jar.args
+javaCompiler...args
+.settings
+target

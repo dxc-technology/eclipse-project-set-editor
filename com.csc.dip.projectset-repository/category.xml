@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<site>
+   <feature url="features/com.csc.dip.projectset_3.10.0.qualifier.jar" id="com.csc.dip.projectset" version="0.0.0">
+      <category name="com.csc.dip.projectset"/>
+   </feature>
+   <category-def name="com.csc.dip.projectset" label="Project Set"/>
+</site>

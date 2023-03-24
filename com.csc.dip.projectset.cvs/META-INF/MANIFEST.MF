@@ -2,9 +2,9 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: %fragmentName
 Bundle-SymbolicName: com.csc.dip.projectset.cvs;singleton:=true
-Bundle-Version: 9.6.2
+Bundle-Version: 9.7.0
 Bundle-Vendor: %providerName
-Bundle-Localization: fragment
+Bundle-Localization: cvs_fragment
 Bundle-ActivationPolicy: lazy
 Bundle-ClassPath: .
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8

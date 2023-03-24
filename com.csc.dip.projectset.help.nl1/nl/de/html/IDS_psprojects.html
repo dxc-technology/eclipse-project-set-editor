@@ -1,0 +1,121 @@
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <title>Projekt Set Projekt</title><link rel="stylesheet" type="text/css" href="book.css"><meta name="generator" content="DocBook XSL Stylesheets V1.79.1"><link rel="home" href="VPMS_ProjektSets_Handbuch.html" title="Projekt Sets"><link rel="up" href="VPMS_ProjektSets_Handbuch.html" title="Projekt Sets"><link rel="prev" href="IDS_projectsets.html" title="Projekt Set"><link rel="next" href="IDS_psfeditor.html" title="Projekt Set Editor"></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">Projekt Set Projekt</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="IDS_projectsets.html"><img src="images/prev.gif" alt=""></a>&nbsp;</td><th width="60%" align="center">&nbsp;</th><td width="20%" align="right">&nbsp;<a accesskey="n" href="IDS_psfeditor.html"><img src="images/next.gif" alt=""></a></td></tr></table><hr></div><div class="chapter"><div class="titlepage"><div><div><h1 class="title"><a name="IDS_psprojects"></a>Projekt Set Projekt</h1></div></div></div>
+	
+	<h2><a name="d5e83"></a>Konzept</h2>
+	<p>
+		Ein Projekt Set Projekt (PS Projekt) ist ein spezialisiertes Projekt
+		mit genau
+		einer
+		<a class="link" href="IDS_projectsets.html" title="Projekt Set">Project Set Datei</a>
+		. In der Eclipse Sicht wird
+		ein PS Projekt mit dem Symbol
+		<span class="inlinemediaobject"><img src="images/psfnature.gif"></span>
+		angezeigt.
+	</p>
+	<p>Jedes PS Projekt hat eine Datei namens .psproject, die
+		den projektrelativen Namen f&uuml;r die Haupt-Projekt-Set-Datei enth&auml;lt.
+		Wenn diese Projekt Set Datei umbenannt wird, muss der Dateiname in der
+		.psproject Datei entsprechend ge&auml;ndert werden.
+		Dieses sollte man &uuml;ber den Eigenschaftsdialog des Projektes auf der Seite
+		"Projekt Set Projekt" machen.
+	</p>
+	<p>PS Projekte geben dem Nutzer die M&ouml;glichkeit, Projekt
+		Sets hierarchisch zu schachteln,
+		indem PS Projekte als Eintr&auml;ge in anderen Projekt Sets genutzt werden.
+		Projekt Sets k&ouml;nnen dann rekursiv geladen werden. Das bedeutet,
+		wenn ein Projekt Set X, das ein Projekt Y enth&auml;lt, geladen wird
+		und dieses Projekt Y ein PS Projekt ist, so werden die Projekte, die in
+		der Projekt Set Datei Y spezifiziert sind, ebenso geladen.
+	</p>
+	<p>
+		Projekt Set Dateien k&ouml;nnen auch ohne ein PS Projekt genutzt werden,
+		allerdings k&ouml;nnen
+		sie dann nicht geschachtelt werden und es werden keine
+			<a class="link" href="IDS_psprojects.html#IDS_psprojects_errormarkers" title="Projekt Set Fehler-Marker">Fehler-Marker</a>
+		f&uuml;r die Dateien erstellt.
+	</p>
+	<h2><a name="IDS_psprojects_conflicts"></a>Konflikte</h2>
+	<p>Bei der Verwendung von PS Projekten k&ouml;nnen Konflikte
+		auftreten. In
+		diesem Fall ist ein Projekt mit verschiedenen Kennzeichnern eingetragen
+		worden.
+		Ein Konflikt entsteht zum Beispiel, wenn ein Projekt Set ein Projekt X
+		und
+		ein Projekt Y beinhaltet, welches ein Projekt Set Projekt ist, das das
+		Projekt X mit einer
+		anderen Kennzeichnung enth&auml;lt.
+	</p>
+	<p>Konflikte k&ouml;nnen nur bemerkt werden, wenn das PS
+		Projekt, das den
+		Konflikt enth&auml;lt, mit dem im Projekt Set spezifizierten Kennzeichner geladen
+		ist,
+		z.B. ist in dem oberen Beispiel der Konflikt nicht sichtbar, wenn das PS
+		Projekt Y
+		nicht oder mit einem anderen Kennzeichner geladen ist.
+	</p>
+	<p>
+		Analog k&ouml;nnen Konflikte auftreten, wenn f&uuml;r ein
+		Projekt verschiedene bevorzugte
+		Projektverzeichnisse definiert werden.
+	</p>
+	<h2><a name="d5e97"></a>Ein Projekt Set Projekt erstellen
+	</h2>
+	<p>
+		Um ein Projekt Set Projekt zu erstellen, benutzen Sie in der Men&uuml;leiste
+		"Datei &gt; Neu &gt; Andere..." und w&auml;hlen Sie in der Kategorie
+		"Projekt Set" den Typ "Projekt Set Projekt" aus.
+	</p>
+	<p>Der Wizard f&uuml;r ein Projekt Set Projekt erstellt
+		automatisch die .psproject
+		Datei und die Projekt Set Datei mit den Projekten, die auf der Wizard Seite
+		festgelegt wurden.
+	</p>
+	<h2><a name="IDS_psprojects_errormarkers"></a>Projekt Set Fehler-Marker</h2>
+	<p>Bei &Auml;nderungen im Arbeitsbereich (z.B. &Auml;ndern einer
+		Projekt Set Datei
+		in einem Projekt Set oder Laden eines Projektes) werden alle PS Projekte
+		auf Fehler und Warnungen gepr&uuml;ft. F&uuml;r jedes PS Projekt wird nur die in
+		der
+		Projekt Set Datei angegebene .psproject Datei auf Konflikte und Ladestatus
+		gepr&uuml;ft. Andere Projekt Set Dateien im PS Projekt werden nicht
+		gepr&uuml;ft.
+	</p>
+	<p>Die Fehlermeldungen und die Warnungen sind alle in der
+		Eclipse-Sicht
+		"Fehler" aufgelistet und die betroffenen Resourcen werden mit einem
+		der folgenden Symbole markiert:
+	</p>
+	<div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: disc; "><li class="listitem">
+			<p>
+				<span class="inlinemediaobject"><img src="images/markernotloaded.gif"></span>
+				Mindestens eines der im Projekt Set spezifizierten Projekte wurde
+				nicht oder
+				mit einer anderen Kennzeichnung geladen.
+			</p>
+		</li><li class="listitem">
+			<p>
+				<span class="inlinemediaobject"><img src="images/markerconflict.gif"></span>
+				Das Projekt Set enth&auml;lt Konflikte (Projekte sind in verschiedenen
+				Kennzeichnungen spezifiziert)
+			</p>
+		</li><li class="listitem">
+			<p>
+				<span class="inlinemediaobject"><img src="images/markererror.gif"></span>
+				Das PS Projekt hat einen Fehler (z.B. die Projekt Set Datei,
+				die in der .psproject Datei spezifiziert wurde existiert nicht)
+			</p>
+		</li></ul></div>
+	<h2><a name="d5e119"></a>Laden von Projekten eines PS Projektes
+	</h2>
+	<p>
+		Um die Projekte zu laden, die durch das Projekt Set
+		des PS Projektes definiert sind,
+		verwenden Sie die Men&uuml;punkte
+		"Laden/Ersetzen Projekte" oder
+		"Laden/Ersetzen Projekte" im Kontextmen&uuml;
+		des PS Projektes oder der darin
+		enthaltenen Projekt Set Datei.
+	</p>
+</div><div class="navfooter"><hr><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="IDS_projectsets.html"><img src="images/prev.gif" alt=""></a>&nbsp;</td><td width="20%" align="center">&nbsp;</td><td width="40%" align="right">&nbsp;<a accesskey="n" href="IDS_psfeditor.html"><img src="images/next.gif" alt=""></a></td></tr><tr><td width="40%" align="left" valign="top">Projekt Set&nbsp;</td><td width="20%" align="center"><a accesskey="h" href="VPMS_ProjektSets_Handbuch.html"><img src="images/home.gif" alt="Zum Anfang"></a></td><td width="40%" align="right" valign="top">&nbsp;Projekt Set Editor</td></tr></table></div><table xmlns:date="http://exslt.org/dates-and-times" border="1" cellspacing="0" cellpadding="2" align="center" width="100%"><tr><td align="left">
+    	&copy; 2023 DXC Technology Deutschland GmbH. All rights reserved.</td></tr></table></body></html>

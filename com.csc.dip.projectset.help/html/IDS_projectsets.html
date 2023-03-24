@@ -1,0 +1,213 @@
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <title>Project Set</title><link rel="stylesheet" type="text/css" href="book.css"><meta name="generator" content="DocBook XSL Stylesheets V1.79.1"><link rel="home" href="VPMS_ProjectSets_Guide.html" title="Project Sets"><link rel="up" href="VPMS_ProjectSets_Guide.html" title="Project Sets"><link rel="prev" href="VPMS_ProjectSets_Guide.html" title="Project Sets"><link rel="next" href="IDS_psprojects.html" title="Project Set Projects"></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">Project Set</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="VPMS_ProjectSets_Guide.html"><img src="images/prev.gif" alt=""></a>&nbsp;</td><th width="60%" align="center">&nbsp;</th><td width="20%" align="right">&nbsp;<a accesskey="n" href="IDS_psprojects.html"><img src="images/next.gif" alt=""></a></td></tr></table><hr></div><div class="chapter"><div class="titlepage"><div><div><h1 class="title"><a name="IDS_projectsets"></a>Project Set</h1></div></div></div>
+		
+	<h2><a name="d5e15"></a>Concept</h2>
+	<p>
+		A project set holds specific information needed to
+		reconstruct a set of projects
+		from a team repository to the workspace.
+		Only projects that are shared can be part
+		of a project set.
+	</p>
+	<p>
+		For example, project sets can be used to group projects for a release or
+		for
+		contributing it to another person.
+	</p>
+	<p>
+		Project sets are stored in xml files with the file extension psf.
+		In
+		the eclipse views the files are displayed with the icon
+		<span class="inlinemediaobject"><img src="images/psffile.gif"></span>
+		.
+	</p>
+	<p>
+		The format of the project set file used by this plugin is the same that
+		is used
+		in eclipse when exporting or importing team project sets.
+	</p>
+	<p>
+		The implementation of this plugin currently supports CVS and Git as team
+		repositories. 
+		Other team repository providers may be implemented as extensions.
+	</p>
+	<h2><a name="IDS_projectsets_preferredProjectLcation"></a>Preferred Project Location</h2>
+	<p>
+		In the
+		<a class="link" href="IDS_psfeditor.html" title="Project Set Editor">Project Set Editor</a>
+		for each project it can
+		be specified to which local directory it will
+		be stored for the first time it is loaded.
+		If no such preferred
+		location is specified it will be stored to the eclipse workspace
+		directory.
+		If the project is already stored to an other location, this
+		location will be
+		used when loading the project.
+	</p>
+	<p>
+		The information about the preferred project locations is stored in an
+		additional
+		file which has the same name as the project set file but
+		with the file extension .ppl.
+		The .ppl file will be shown with the icon
+		<span class="inlinemediaobject"><img src="images/pplfile.gif"></span>
+		and will be created the first time the user specifies a preferred
+		project location
+		in the project set editor and then saves the project
+		set.
+	</p>
+	<p>
+		Placeholders for path segments can be used in the preferred project
+		locations.
+		The syntax to be used is ${Variablename}, for example
+		"${myroot}/subfolder"
+		can be set as preferred location and every user
+		can define his own root directory.
+		Every variable must be defined in
+		the
+		<a class="link" href="IDS_psfpreferences.html" title="Project Set Preferences">preference page</a>
+		for the project sets.
+		The pathvariable ${workspace} is always defined
+		implicitly with the path to the
+		eclipse workspace directory.
+		Project
+		sets with undefined variables can not be loaded.
+	</p>
+	<h6><a name="d5e33"></a><span xmlns:date="http://exslt.org/dates-and-times" class="emphasis"><em>Warning!</em></span></h6>
+	<p>
+		The specified preferred local directory will be
+		deleted before loading the project from the
+		team repository. Please specify always the complete path of the directory
+		to which the
+		project files should be loaded. For example if you set C:\
+		as preferred local directory
+		the hard disk will be completely deleted !
+	</p>
+	<h6><a name="d5e36"></a><span xmlns:date="http://exslt.org/dates-and-times" class="emphasis"><em>Note</em></span></h6>
+	<p>
+		When loading a project with a preferred local
+		directory always the message dialog
+		"The project already exists. Do you
+		wish to overwrite it?", even if the
+		project not exists before. For
+		technical reasons this message can currently not be suppressed.
+		Please
+		confirm it with "Yes".
+	</p>
+	<h2><a name="d5e39"></a>Create a project set file</h2>
+	<p>
+		To create a project set file use the menu "File &gt; New &gt; Other...",
+		select the category "Project Set" and the type "Project Set".
+	</p>
+	<div class="mediaobject"><img src="images/newpsfpage0.gif"></div>
+	<p>
+		The Wizard for creating a new project set has two pages.
+	</p>
+	<p>
+		On the first page you can specify the name of the project set file and
+		the destination folder.
+	</p>
+	<div class="mediaobject"><img src="images/newpsfpage1.gif"></div>
+	<p>
+		On the second page you select the projects that will be in the project
+		set.
+		Only shared projects that are loaded in the workspace can be
+		added.
+		They will be added in the tag that is loaded in the workspace.
+		This dialog has some buttons to simplify the selection (e.g. select
+		all projects of a working set).
+		If the checkbox "Select referenced" is activated, subsequent selection of projects will also select their referenced projects. This also works recursively. The checkbox "Select referenced" does not apply its function on already selected projects.
+		Deselecting a project will not deselect its referenced projects.
+	</p>
+	<div class="mediaobject"><img src="images/newpsfpage2.gif"></div>
+	<p>
+		Note: To create a project set file you can also use the menu "File &gt;
+		Export..." and select "Team Project Set"
+	</p>
+	<h2><a name="d5e54"></a>Edit a project set file</h2>
+	<p>
+		To edit a project set file
+		</p><div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: disc; "><li class="listitem">
+				<p>
+					double click on the project set file in an eclipse view
+					<span xmlns:date="http://exslt.org/dates-and-times" class="bold"><strong>or</strong></span>
+				</p>
+			</li><li class="listitem">
+				<p>
+					select "Open" or "Open With &gt; Project Set Editor "
+				</p>
+			</li></ul></div><p>
+	</p>
+	<p>
+		An Editor for the project set will then be opened.
+		How to use this
+		editor is described in
+		<a class="link" href="IDS_psfeditor.html" title="Project Set Editor">Project Set Editor</a>
+	</p>
+	<h2><a name="d5e64"></a>Load/Replace projects from a project set
+	</h2>
+	<p>
+		The projects referenced in a project set file can be added to the
+		workspace by
+		</p><div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: disc; "><li class="listitem">
+				<p>
+					opening a project set editor on a project set file and use the
+					editor functionality
+					<span xmlns:date="http://exslt.org/dates-and-times" class="bold"><strong>or</strong></span>
+				</p>
+			</li><li class="listitem">
+				<p>
+					using the menu "Load/Replace Projects" in the context menu of a
+					project set file in a eclipse view
+					<span xmlns:date="http://exslt.org/dates-and-times" class="bold"><strong>or</strong></span>
+				</p>
+			</li><li class="listitem">
+				<p>
+					using the menu "Load/Replace Projects recursively" in the context
+					menu of a project set file in a eclipse view
+					(the meaning of recursive loading is explained at
+					<a class="link" href="IDS_psprojects.html" title="Project Set Projects">Project Set Projects</a>
+					)
+					<span xmlns:date="http://exslt.org/dates-and-times" class="bold"><strong>or</strong></span>
+				</p>
+			</li><li class="listitem">
+				<p>
+					using the menu "File &gt; Import..." and select selecting "Team Project
+					Set"
+				</p>
+			</li></ul></div><p>
+		
+	</p>
+	<p>
+		If a project is already loaded in the workspace you will be asked if the
+		content should be overwritten.
+	</p>
+	<h2><a name="d5e80"></a>Remarks</h2>
+	<p>
+		Repository locations in project sets distinguish between server names and IP
+		addresses.
+		This means if one user has the repository specified by the server name and
+		and an other user uses
+		the IP address of the server (or an other name for the same server) this
+		will cause problems,
+		e.g. the projects will be shown to one user as "loaded in an other
+		version"
+		although the same version of the physically same server is loaded.
+		It is recommended to use the server name instead of the IP address.
+	</p>
+	<p>
+		To avoid problems when changing the server location of a repository we
+		recommend
+		to use different symbolic server names for each repository. Each user
+		must map
+		the symbolic names in the hosts file to the real server names or IP
+		addresses.
+		On Windows NT/2000 the hosts file is located
+		C:\WINNT\system32\drivers\etc.
+	</p>
+</div><div class="navfooter"><hr><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="VPMS_ProjectSets_Guide.html"><img src="images/prev.gif" alt=""></a>&nbsp;</td><td width="20%" align="center">&nbsp;</td><td width="40%" align="right">&nbsp;<a accesskey="n" href="IDS_psprojects.html"><img src="images/next.gif" alt=""></a></td></tr><tr><td width="40%" align="left" valign="top">
+			Project Sets
+		&nbsp;</td><td width="20%" align="center"><a accesskey="h" href="VPMS_ProjectSets_Guide.html"><img src="images/home.gif" alt="Home"></a></td><td width="40%" align="right" valign="top">&nbsp;Project Set Projects</td></tr></table></div><table xmlns:date="http://exslt.org/dates-and-times" border="1" cellspacing="0" cellpadding="2" align="center" width="100%"><tr><td align="left">
+    	&copy; 2023 DXC Technology Deutschland GmbH. All rights reserved.</td></tr></table></body></html>

@@ -15,6 +15,10 @@
  ******************************************************************************/
 package com.csc.dip.projectset.ui;
 
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
+
 /**
  * @author Dirk Baumann
  * 
@@ -24,6 +28,7 @@ package com.csc.dip.projectset.ui;
  */
 
 import java.lang.reflect.InvocationTargetException;
+import java.nio.file.Files;
 import java.text.MessageFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -41,16 +46,19 @@ import org.eclipse.core.resources.IResource;
 import org.eclipse.core.resources.IResourceChangeEvent;
 import org.eclipse.core.resources.IResourceChangeListener;
 import org.eclipse.core.resources.IResourceDelta;
+import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.OperationCanceledException;
+import org.eclipse.core.runtime.Path;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.jface.action.Action;
 import org.eclipse.jface.action.IMenuListener;
 import org.eclipse.jface.action.IMenuManager;
 import org.eclipse.jface.action.MenuManager;
 import org.eclipse.jface.action.Separator;
+import org.eclipse.jface.dialogs.ErrorDialog;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.resource.JFaceResources;
 import org.eclipse.jface.viewers.DoubleClickEvent;
@@ -93,6 +101,7 @@ import org.eclipse.team.core.TeamException;
 import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IEditorSite;
 import org.eclipse.ui.IFileEditorInput;
+import org.eclipse.ui.IStorageEditorInput;
 import org.eclipse.ui.IViewPart;
 import org.eclipse.ui.IViewReference;
 import org.eclipse.ui.IWorkbench;
@@ -371,17 +380,70 @@ public class ProjectSetEditor extends EditorPart {
 		sourceChanged = true;
 		inputChanged();
 	}
+	
+	private IPath writeTempFile(IStorageEditorInput input) {
+		String tempFileName = getCorrectName(input.getName());
+		java.nio.file.Path path;
+		try {
+			path = Files
+					.createTempDirectory(ProjectSetUIPlugin.getDefault()
+							.getStateLocation().toFile().toPath(), "commit") //$NON-NLS-1$
+					.resolve(tempFileName);
+			try (InputStream in = input.getStorage().getContents()) {
+				Files.copy(in, path);
+			}
+			path = path.toAbsolutePath();
+		} catch (CoreException | IOException e) {
+//			
+			// We mustn't return null; doing so might cause an NPE in
+			// WorkBenchPage.busyOpenEditor()
+			return new Path(""); //$NON-NLS-1$
+		}
+		File file = path.toFile();
+		file.setReadOnly();
+		Runtime.getRuntime().addShutdownHook(new Thread(() -> {
+			if (file.setWritable(true) && file.delete()) {
+				file.getParentFile().delete();
+			} else {
+				// Couldn't delete: re-set as read-only
+				file.setReadOnly();
+			}
+		}));
+		return new Path(path.toString());
+	}
+
+	private String getCorrectName(String name) {
+		String commit = name.substring(name.lastIndexOf(' ')+1, name.length());
+		String fileName = name.substring(0, name.lastIndexOf(' '));
+		String fullTempName = commit+"_"+fileName;
+		return fullTempName;
+	}
 
 	/**
 	 * Initializes the editor, loads the project set and update the errors
 	 */
 	public void init(IEditorSite site, IEditorInput input) throws PartInitException {
-		if (!(input instanceof IFileEditorInput))
-			throw new PartInitException(Messages.getString("ProjectSetEditor.Invalid_Input__Must_be_IFileEditorInput")); //$NON-NLS-1$
-		setSite(site);
-		setInput(input);
-		inputChanged();
-		projectSet.getProjectSetFile().getWorkspace().addResourceChangeListener(resourceListener);
+		try {
+			if (input instanceof IFileEditorInput) {
+				setSite(site);
+				setInput(input);
+				inputChanged();
+				projectSet.getProjectSetFile().getWorkspace().addResourceChangeListener(resourceListener);
+			} else if (input instanceof IStorageEditorInput) {
+				setSite(site);
+				IStorageEditorInput isei = (IStorageEditorInput) input;
+				IPath ip = writeTempFile(isei);
+				if (!ip.isEmpty()) {
+					ResourcesPlugin.getWorkspace().getRoot().getFile(ip);
+					IFileEditorInput ifei = new FileEditorInput(ResourcesPlugin.getWorkspace().getRoot().getFile(ip));
+					setInput(ifei);
+					inputChanged();
+					projectSet.getProjectSetFile().getWorkspace().addResourceChangeListener(resourceListener);
+				}
+			}
+		} catch (NullPointerException e) {
+			throw new PartInitException(MessageFormat.format(Messages.getString("ProjectSetEditor.File{0}_not_found"), new Object[] {input.getAdapter(IFileEditorInput.class).getFile().getFullPath().toOSString()}));
+		}
 	}
 	
 	protected void inputChanged() {
@@ -419,6 +481,8 @@ public class ProjectSetEditor extends EditorPart {
 	public void doSave(IProgressMonitor monitor) {
 
 		final IFile projectSetFile = getProjectSetFile();
+		try {
+			checkFileForWritingAccess(projectSetFile);
 
 		WorkspaceModifyOperation operation = new WorkspaceModifyOperation() {
 			public void execute(IProgressMonitor pm) throws CoreException {
@@ -426,7 +490,7 @@ public class ProjectSetEditor extends EditorPart {
 			}
 		};
 
-		try {
+		
 			operation.run(monitor);
 			setDirty(false);
 			projectSetFile.refreshLocal(IResource.DEPTH_ZERO, monitor);
@@ -439,7 +503,19 @@ public class ProjectSetEditor extends EditorPart {
 				Messages.getString("ProjectSetEditor.Error_while_saving"), //$NON-NLS-1$
 				MessageFormat.format(Messages.getString("ProjectSetEditor.Can__t_save_file_{0},_reason__{1}"), new Object[] {projectSetFile.getFullPath().toString(),e.getTargetException().getMessage()}) //$NON-NLS-1$
 			);
+		} catch (IOException e) {
+			MessageDialog.openError(
+					getShell(),
+					Messages.getString("ProjectSetEditor.Error_while_saving"), //$NON-NLS-1$
+					e.getMessage());
 		}
+	}
+	private void checkFileForWritingAccess(IFile projectSetFile) throws IOException {
+		if(projectSetFile.getLocation() == null) {
+			String message = MessageFormat.format(Messages.getString("ProjectSetEditor.File_{0}_is_read_only_and_cannot_be_saved"), new Object[] {projectSetFile.getName()});
+			throw new IOException(message);	
+		}
+		
 	}
 
 	/**

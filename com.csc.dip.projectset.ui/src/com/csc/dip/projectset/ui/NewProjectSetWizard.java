@@ -64,6 +64,7 @@ public class NewProjectSetWizard extends Wizard implements INewWizard {
 	 * @see org.eclipse.jface.wizard.IWizard#performFinish()
 	 */
 	public boolean performFinish() {
+		boolean accepted = true;
 		IFile file = newFileCreationPage.createNewFile();		
 		IProject[] selectedProjects = projectSetWizardPage.getSelectedProjects();
 		
@@ -78,11 +79,12 @@ public class NewProjectSetWizard extends Wizard implements INewWizard {
 			try {
 				file.refreshLocal(IResource.DEPTH_ZERO, null);
 			} catch (CoreException e) {
-				return false;
+				openErrorDialog(getShell(), e);
+				accepted = false;
 			}
 		}
 		
-		return true;
+		return accepted;
 	}
 
 	/**

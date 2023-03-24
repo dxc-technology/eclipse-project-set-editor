@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<toc xmlns:date="http://exslt.org/dates-and-times" label="Projekt Sets" topic="./html/VPMS_ProjektSets_Handbuch.html">
+   <topic label="Projekt Set" href="./html/IDS_projectsets.html"/>
+   <topic label="Projekt Set Projekt" href="./html/IDS_psprojects.html"/>
+   <topic label="Projekt Set Editor" href="./html/IDS_psfeditor.html"/>
+   <topic label="Projekt Set Benutzervorgaben" href="./html/IDS_psfpreferences.html"/>
+   <topic label="Arbeitssets" href="./html/IDS_workingsets.html"/>
+</toc>

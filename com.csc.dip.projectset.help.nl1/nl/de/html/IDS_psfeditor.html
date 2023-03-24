@@ -1,0 +1,114 @@
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <title>Projekt Set Editor</title><link rel="stylesheet" type="text/css" href="book.css"><meta name="generator" content="DocBook XSL Stylesheets V1.79.1"><link rel="home" href="VPMS_ProjektSets_Handbuch.html" title="Projekt Sets"><link rel="up" href="VPMS_ProjektSets_Handbuch.html" title="Projekt Sets"><link rel="prev" href="IDS_psprojects.html" title="Projekt Set Projekt"><link rel="next" href="IDS_psfpreferences.html" title="Projekt Set Benutzervorgaben"></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">Projekt Set Editor</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="IDS_psprojects.html"><img src="images/prev.gif" alt=""></a>&nbsp;</td><th width="60%" align="center">&nbsp;</th><td width="20%" align="right">&nbsp;<a accesskey="n" href="IDS_psfpreferences.html"><img src="images/next.gif" alt=""></a></td></tr></table><hr></div><div class="chapter"><div class="titlepage"><div><div><h1 class="title"><a name="IDS_psfeditor"></a>Projekt Set Editor</h1></div></div></div>
+  
+
+  <h2><a name="d5e123"></a>&Uuml;bersicht Editor</h2>
+
+  <p>Der Projekt Set Editor (PSF Editor) wird benutzt um eine <a class="link" href="IDS_projectsets.html" title="Projekt Set">Projekt Set Datei </a> zu editieren. Er hat drei Bereiche:</p>
+
+  <div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: disc; "><li class="listitem">
+      <p>Die Tabelle im obersten Bereich zeigt den Inhalt des Projekt Sets.</p>
+    </li><li class="listitem">
+      <p>Der untere Bereich zeigt die Details des Projekt Set Eintrages, der in der Tabelle ausgew&auml;hlt ist.</p>
+    </li><li class="listitem">
+      <p>Auf der rechten Seite befinden sich die Kn&ouml;pfe zum Bearbeiten des Projekt Sets.</p>
+    </li></ul></div>
+
+  <div class="mediaobject"><img src="images/psfeditor.png"></div>
+
+  <h2><a name="d5e136"></a>Beschreibung der Projekt Set Inhaltstabelle</h2>
+
+  <p>Die Tabelle zeigt die Eintr&auml;ge des Projekt Sets. Sie hat folgende Spalten: </p><div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: disc; "><li class="listitem">
+        <p><span xmlns:date="http://exslt.org/dates-and-times" class="bold"><strong>Name:</strong></span> Icon, Name und Repositoryinformationen des gerade geladenen Projektes. Nur der Name, falls das Projekt nicht geladen ist.</p>
+      </li><li class="listitem">
+        <p><span xmlns:date="http://exslt.org/dates-and-times" class="bold"><strong>Kennzeichnung:</strong></span> Die Kennzeichnung des Projektes im Projekt Set. F&uuml;r CVS als Team Provider ist dies "HEAD" oder der Versions- oder Verzweigungsname.</p>
+      </li><li class="listitem">
+        <p><span xmlns:date="http://exslt.org/dates-and-times" class="bold"><strong>Verzeichnisprobleme:</strong></span> Zeigt Probleme, die sich bei der Angabe des bevorzugten lokalen Verzeichnisses ergeben. M&ouml;gliche Probleme sind: </p><div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: circle; "><li class="listitem">
+              <p>Das spezifizierte bevorzugte lokale Verzeichnis enth&auml;lt undefinierte Pfadvariablen</p>
+            </li><li class="listitem">
+              <p>Das Projekt ist nicht in das bevorzugte lokale Verzeichnis geladen</p>
+            </li><li class="listitem">
+              <p>Das bevorzugte lokale Verzeichnis ist identisch mit (oder enthalten in) einem bevorzugten Verzeichnis eines anderen Projektes</p>
+            </li><li class="listitem">
+              <p>Verschiedene bevorzugte Verzeichnisse wurden f&uuml;r ein Projekt angegeben. (Nur m&ouml;glich wenn <a class="link" href="IDS_psprojects.html" title="Projekt Set Projekt">Projekt Set Projekte</a> benutzt werden)</p>
+            </li></ul></div><p> In der Spalte k&ouml;nnen folgende Symbole angezeigt werden: </p><div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: circle; "><li class="listitem">
+              <p><span class="inlinemediaobject"><img src="images/conflict.png"></span> Der Eintrag hat ein Pfadproblem</p>
+            </li><li class="listitem">
+              <p><span class="inlinemediaobject"><img src="images/conflictsub.png"></span> Ein Untereintrag hat ein Pfadproblem</p>
+            </li></ul></div>
+      </li><li class="listitem">
+        <p><span xmlns:date="http://exslt.org/dates-and-times" class="bold"><strong>Kennz. Konflikte:</strong></span> Zeigt die <a class="link" href="IDS_psprojects.html#IDS_psprojects_conflicts" title="Konflikte">Konflikte</a> , wennauf ein Projekt mit verschiedenen Kennzeichnungen innerhalb eines Projekt Sets referenziert wird (nur m&ouml;glich wenn <a class="link" href="IDS_psprojects.html" title="Projekt Set Projekt">Projekt Set Projekte </a> benutzt werden). Die Spalte zeigt folgendes Symbol an: </p><div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: circle; "><li class="listitem">
+              <p><span class="inlinemediaobject"><img src="images/conflict.png"></span> wenn der Eintrag einen Kennzeichnungskonflikt aufweist.</p>
+            </li><li class="listitem">
+              <p><span class="inlinemediaobject"><img src="images/conflictsub.png"></span> wenn ein Unterpunkt (Eintrag) einen Kennzeichnungskonflikt aufweist</p>
+            </li></ul></div>
+      </li><li class="listitem">
+        <p><span xmlns:date="http://exslt.org/dates-and-times" class="bold"><strong>Status:</strong></span> Zeigt den Status des Projekteintrages an. Die m&ouml;glichen Stati sind: </p><div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: circle; "><li class="listitem">
+              <p><span class="inlinemediaobject"><img src="images/loaded.png"></span> Geladen = das Projekt wurde mit der Kennzeichnung, die das Projekt Set vorgegeben hat, geladen.</p>
+            </li><li class="listitem">
+              <p><span class="inlinemediaobject"><img src="images/notloaded.png"></span> Nicht geladen = das Projekt ist nicht in den Arbeitsbereich geladen.</p>
+            </li><li class="listitem">
+              <p><span class="inlinemediaobject"><img src="images/differentloaded.png"></span> Unterschiedlich geladen = das Projekt ist mit einer anderen Kennzeichnung als der durch das Projekt Set vorgegebenen geladen.</p>
+            </li><li class="listitem">
+              <p><span class="inlinemediaobject"><img src="images/notshared.png"></span> Nicht gemeinsam genutzt = das Projekt im Arbeitsbereich wird nicht gemeinsam genutzt.</p>
+            </li></ul></div>
+      </li><li class="listitem">
+        <p><span xmlns:date="http://exslt.org/dates-and-times" class="bold"><strong>Provider:</strong></span> Der Team Provider des aktuellen Eintrags. Um die &Uuml;bersichtlichkeit zu verbessern, hat diese Spalte die Breite null, die bei Bedarf aber ver&auml;ndert werden kann.</p>
+      </li><li class="listitem">
+        <p><span xmlns:date="http://exslt.org/dates-and-times" class="bold"><strong>Server Ort:</strong></span> Der Server Ort des aktuellen Eintrags. Um die &Uuml;bersichtlichkeit zu verbessern, hat diese Spalte die Breite null, die bei Bedarf aber ver&auml;ndert werden kann.</p>
+      </li></ul></div>
+
+  <p>Das Kontextmen&uuml; der Tabelle besitzt dieselben Aktionsm&ouml;glichkeiten wie auf der rechten Seite des Editors. Wenn alle ausgew&auml;hlten Projekte geladen sind kommen zus&auml;tzlich eigene Projektaktionen (z.B. vergleiche mit, ersetze durch,...) hinzu. Die zus&auml;tzlichen Aktionen werden auf alle geladenen Versionen der Projekte angewendet!</p>
+
+  <p>Die Eintr&auml;ge k&ouml;nnen nach dem Inhalt einer Spalte sortiert werden. Dazu klickt man auf die &Uuml;berschrift der entsprechenden Spalte. Ein zweiter Klick &auml;ndert die Sortierung von aufsteigend nach absteigend. Bei einem dritten Klick werden die Eintr&auml;ge nicht mehr sortiert.</p>
+
+  <h2><a name="d5e217"></a>Beschreibung des Detail-Bereiches</h2>
+
+  <p>Der Bereich unterhalb der Tabelle zeigt die Details des ausgew&auml;hlten Eintrages.</p>
+
+  <p>Oben in diesem Bereich wird der Name des ausgew&auml;hlten Eintrages angezeigt.</p>
+
+  <p>In der n&auml;chsten Zeile befindet sich ein Eingabefeld f&uuml;r das bevorzugte lokale Verzeichnis. Ein leerer Eintrag bedeutet, dass das Standardverzeichnis innerhalb des Workspace-Verzeichnisses verwendet wird. Der Eintrag kann nur bearbeitet werden, wenn der Team-Provider ein bevorzugtes lokales Verzeichnis anbietet, und ist nur f&uuml;r Wurzeleintr&auml;ge editierbar, d.h. nicht f&uuml;r Untereintr&auml;ge. Ein Untereintrag muss in dem Projekt Set bearbeitet werden, das ihn direkt enth&auml;lt. Die Kn&ouml;pfe neben dem Eingabefeld habe folgende Funktionen: </p><div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: disc; "><li class="listitem">
+        <p><span xmlns:date="http://exslt.org/dates-and-times" class="bold"><strong>Durchsuchen:</strong></span> &Ouml;ffnet einen Dateidialog zur Auswahl eine lokalen Verzeichnisses</p>
+      </li><li class="listitem">
+        <p><span xmlns:date="http://exslt.org/dates-and-times" class="bold"><strong>Aktuell:</strong></span> Setzt das bevorzugte lokale Verzeichnis auf das Verzeichnis, in dem das Projekt aktuell gespeichert ist</p>
+      </li><li class="listitem">
+        <p><span xmlns:date="http://exslt.org/dates-and-times" class="bold"><strong>Variable:</strong></span> &Ouml;ffnet einen Dialog zur Auswahl einer Pfadvariablen, die dann in dem Eingabefeld eingef&uuml;gt wird. (Die Variablen werden in den Projekt Set <a class="link" href="IDS_psfpreferences.html" title="Projekt Set Benutzervorgaben">Benutzervorgaben</a> definiert)</p>
+      </li></ul></div><p> Unterhalb des Eingabefeldes werden die Kennzeichnungskonflikte und die Probleme bez&uuml;glich des bevorzugten lokalen Verzeichnisses angezeigt.</p>
+
+  <p>Die beiden Bereiche im unteren Teil des Editors zeigen noch mehr Details &uuml;ber den ausgew&auml;hlten Eintrag und das geladene Projekt. Die Bereiche k&ouml;nnen durch Klicken der blauen Dreiecke neben den Bereichs&uuml;berschriften auf- und zugeklappt werden. Das bevorzugte lokale Verzeichnis wird hier mit aufgel&ouml;sten Pfadvariablen gezeigt. Unterschiede zwischen dem Eintrag und dem geladenen Projekt sind rot markiert.</p>
+
+  <h2><a name="d5e233"></a>Beschreibung der Kn&ouml;pfe</h2>
+
+  <p>Die Kn&ouml;pfe f&uuml;r die m&ouml;glichen Aktionen auf der rechten Seite des Editors sind:</p>
+
+  <div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: disc; "><li class="listitem">
+      <p><span xmlns:date="http://exslt.org/dates-and-times" class="bold"><strong>Lade/Ersetze ausgew&auml;hlte:</strong></span> L&auml;dt oder ersetzt (wenn vorhanden) die ausgew&auml;hlten Projekte durch die in dem Projekt Set angegebenen Kennzeichnung.</p>
+    </li><li class="listitem">
+      <p><span xmlns:date="http://exslt.org/dates-and-times" class="bold"><strong>Lade/Ersetze alle:</strong></span> L&auml;dt oder ersetzt (wenn vorhanden) alle Projekte des Projekt Sets durch die Kennzeichnung, die in dem Projekt Set angegeben ist.</p>
+    </li><li class="listitem">
+      <p><span xmlns:date="http://exslt.org/dates-and-times" class="bold"><strong>Hinzuf&uuml;gen:</strong></span> &Ouml;ffnet einen Dialog f&uuml;r die Auswahl der Projekte, die zu dem Projekt Set hinzugef&uuml;gt werden sollen. Nur gemeinsam genutzte Projekte, die noch nicht im Projekt Set sind, werden aufgelistet.</p>
+    </li><li class="listitem">
+      <p><span xmlns:date="http://exslt.org/dates-and-times" class="bold"><strong>Entfernen: </strong></span> Entfernt alle ausgew&auml;hlten Eintr&auml;ge vom Projekt Set.</p>
+    </li><li class="listitem">
+      <p><span xmlns:date="http://exslt.org/dates-and-times" class="bold"><strong>Setze ausgw. zu geladener Kennz.:</strong></span> Setzt die Kennzeichnungder ausgew&auml;hlten Eintr&auml;ge zu der Kennzeichnung, welches das Projekt in Arbeitsbereich hat.</p>
+    </li><li class="listitem">
+      <p><span xmlns:date="http://exslt.org/dates-and-times" class="bold"><strong>Alle ausw&auml;hlen:</strong></span> W&auml;hlt alle Eintr&auml;ge im Projekt Set aus.</p>
+    </li><li class="listitem">
+      <p><span xmlns:date="http://exslt.org/dates-and-times" class="bold"><strong>Geladene ausw&auml;hlen:</strong></span> W&auml;hlt alle Eintr&auml;ge im Projekt Set aus, die im Workspace geladen sind, auch die, welche in einer anderen Version geladen sind.</p>
+    </li><li class="listitem">
+      <p><span xmlns:date="http://exslt.org/dates-and-times" class="bold"><strong>Ungeladene ausw&auml;hlen:</strong></span> W&auml;hlt alle Eintr&auml;ge im Projekt Set aus, deren Projekt nicht im Workspace geladen ist.</p>
+    </li><li class="listitem">
+      <p><span xmlns:date="http://exslt.org/dates-and-times" class="bold"><strong>&Ouml;ffne eingeschlossene PS Datei:</strong></span> &Ouml;ffnet einen neuen PSF Editor f&uuml;r die Projekt Set Datei des ausgew&auml;hlten Projekt Set Projekts.</p>
+    </li></ul></div>
+
+  <p>Die Bearbeitungskn&ouml;pfe zum Hinzuf&uuml;gen, Entfernen oder &Auml;ndern der Kennzeichnung sind ausgeschaltet, wenn Untereintr&auml;ge ausgew&auml;hlt sind. Diese Eintr&auml;ge m&uuml;ssen im PSF Editor f&uuml;r ihr &uuml;bergeordnetes Projekt ge&auml;ndert werden. Die "Lade/Ersetze" Kn&ouml;pfe sind ausgeschaltet, wenn ein Eintrag und gleichzeitig einer seiner &uuml;bergeordneten Eintr&auml;ge ausgew&auml;hlt ist.</p>
+
+  <p>Die Checkbox "Lade/Ersetze rekursiv" bestimmt, dass die Projekte rekursiv geladen werden, wenn einer der beiden "Lade/Ersetze" Kn&ouml;pfen gedr&uuml;ckt wird. Der Vorgabestatus dieser Checkbox kann in den <a class="link" href="IDS_psfpreferences.html" title="Projekt Set Benutzervorgaben">Benutzervorgaben</a> f&uuml;r das Projekt Set festgelegt werden.</p>
+
+  <h2><a name="d5e266"></a>Speichern des Projekt Sets</h2>
+
+  <p>Wenn Sie &lt;CTRL&gt; und "s" dr&uuml;cken oder "Speichere Projekt Set" aus dem Kontextmen&uuml; des Editors w&auml;hlen, wird das Projekt Set gespeichert. Auch wenn Sie den Editor schlie&szlig;en, werden Sie gefragt, ob ihre &Auml;nderungen in der Projekt Set Datei gespeichert werden sollen.</p>
+</div><div class="navfooter"><hr><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="IDS_psprojects.html"><img src="images/prev.gif" alt=""></a>&nbsp;</td><td width="20%" align="center">&nbsp;</td><td width="40%" align="right">&nbsp;<a accesskey="n" href="IDS_psfpreferences.html"><img src="images/next.gif" alt=""></a></td></tr><tr><td width="40%" align="left" valign="top">Projekt Set Projekt&nbsp;</td><td width="20%" align="center"><a accesskey="h" href="VPMS_ProjektSets_Handbuch.html"><img src="images/home.gif" alt="Zum Anfang"></a></td><td width="40%" align="right" valign="top">&nbsp;Projekt Set Benutzervorgaben</td></tr></table></div><table xmlns:date="http://exslt.org/dates-and-times" border="1" cellspacing="0" cellpadding="2" align="center" width="100%"><tr><td align="left">
+    	&copy; 2023 DXC Technology Deutschland GmbH. All rights reserved.</td></tr></table></body></html>

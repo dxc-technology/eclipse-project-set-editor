@@ -1,0 +1,90 @@
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <title>Projekt Set</title><link rel="stylesheet" type="text/css" href="book.css"><meta name="generator" content="DocBook XSL Stylesheets V1.79.1"><link rel="home" href="VPMS_ProjektSets_Handbuch.html" title="Projekt Sets"><link rel="up" href="VPMS_ProjektSets_Handbuch.html" title="Projekt Sets"><link rel="prev" href="VPMS_ProjektSets_Handbuch.html" title="Projekt Sets"><link rel="next" href="IDS_psprojects.html" title="Projekt Set Projekt"></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">Projekt Set</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="VPMS_ProjektSets_Handbuch.html"><img src="images/prev.gif" alt=""></a>&nbsp;</td><th width="60%" align="center">&nbsp;</th><td width="20%" align="right">&nbsp;<a accesskey="n" href="IDS_psprojects.html"><img src="images/next.gif" alt=""></a></td></tr></table><hr></div><div class="chapter"><div class="titlepage"><div><div><h1 class="title"><a name="IDS_projectsets"></a>Projekt Set</h1></div></div></div>
+  
+
+  <h2><a name="d5e15"></a>Konzept</h2>
+
+  <p>Ein Projekt Set h&auml;lt spezifische Informationen bereit, um ein B&uuml;ndel von Projekten eines Team-Repositories im Arbeitsbereich wieder herzustellen. Nur Projekte auf die gemeinsam zugegriffen wird, k&ouml;nnen Teil eines Projekt Sets sein.</p>
+
+  <p>Zum Beispiel k&ouml;nnen Projekt Sets benutzt werden, um Projekte f&uuml;r eine Ver&ouml;ffentlichung zu gruppieren oder um sie einer anderen Person zukommen zu lassen.</p>
+
+  <p>Projekt Sets werden in XML-Dateien mit der Datei-Erweiterung .psf gespeichert. In den Eclipse Ansichten werden die Dateien mit dem Symbol <span class="inlinemediaobject"><img src="images/psffile.gif"></span> dargestellt.</p>
+
+  <p>Das Format einer Projekt Set Datei, welches von diesem Plugin benutzt wird, ist dasselbe, welches in Eclipse f&uuml;r das Exportieren oder Importieren in Team Projekt Sets verwendet wird.</p>
+
+  <p>Die Implementierung dieses Plugins unterst&uuml;tzt aktuell CVS und Git als Team-Repositories. Andere Team-Repository Anbieter k&ouml;nnen Erweiterungen zur Unterst&uuml;zung dieses Projekt Set Plugins erstellen.</p>
+
+  <h2><a name="IDS_projectsets_prefprojectlocations"></a>Bevorzugte Projektverzeichnisse</h2>
+
+  <p>Im <a class="link" href="IDS_psfeditor.html" title="Projekt Set Editor">Projekt Set Editor</a> kann man f&uuml;r jedes Projekt ein bevorzugtes lokales Projektverzeichnis angeben, in das das Projekt beim ersten Abrufen aus dem Team-Repository gespeichert wird. Wird kein bevorzugtes Verzeichnis angegeben, so wird das Projekt standardm&auml;&szlig;ig in das Eclipse Workspace Verzeichnis gespeichert. Ist das Projekt bereits in ein anderes Verzeichnis abgerufen worden, so wird dieses Verzeichnis verwendet.</p>
+
+  <p>Die Informationen &uuml;ber die bevorzugten Projektverzeichnisse werden in einer zus&auml;tzlichen Datei gespeichert, die den gleichen Namen wie die Projekt Set Datei hat, jedoch mit dem Dateizusatz .ppl. Die .ppl-Datei wird mit dem Icon <span class="inlinemediaobject"><img src="images/pplfile.gif"></span> angezeigt und wird erzeugt sobald der Benutzer im Projekt Set Editor das erste mal ein bevorzugtes Projektverzeichnis angibt und das Projekt Set speichert.</p>
+
+  <p>Bei der Angabe der bevorzugten Projektverzeichnisse k&ouml;nnen Platzhalter verwendet werden. Die Syntax f&uuml;r die Verwendung ist ${Variablenname}. Zum Beispiel kann man "${myroot}/subfolder" als bevorzugtes Verzeichnis angeben und jeder Benutzer kann sein eigenes "myroot"-Verzeichnis definieren. Jeder verwendeten Variable muss in der <a class="link" href="IDS_psfpreferences.html" title="Projekt Set Benutzervorgaben">Benutzervorgabenseite f&uuml;r Projekt Sets</a> ein Wert zugewiesen werden. Die Pfadvariable ${workspace} ist immer implizit definiert und enth&auml;lt den Pfad zum Eclipse Workspace Verzeichnis. Projekt Sets mit undefinierten Variablen k&ouml;nnen nicht geladen werden.</p>
+
+  <h2><a name="d5e33"></a>Achtung!</h2>
+
+  <p>Das angegebene bevorzugte Projektverzeichnis wird beim Abrufen des Projektes zuvor gel&ouml;scht. Geben Sie hier bitte immer den vollst&auml;ndigen Pfad des Verzeichnisses an, in das die Projektdateien abgerufen werden sollen. Wenn Sie z.B. C:\ als Pfad angeben, wird ihre komplette Festplatte gel&ouml;scht!</p>
+
+  <h2><a name="d5e35"></a>Hinweis</h2>
+
+  <p>Beim Abbrufen eines Projektes mit einem bevorzugten Projektverzeichnis erscheint immer die Meldung "Das Projekt ist bereits vorhanden. Soll es &uuml;berschrieben werden?", auch wenn es zuvor nicht vorhanden war. Aus technischen Gr&uuml;nden l&auml;&szlig;t sich diese Meldung zur Zeit nicht verhindern. Bitte best&auml;tigen Sie die Meldung mit "Ja".</p>
+
+  <h2><a name="d5e37"></a>Erstellen einer Projekt Set Datei</h2>
+
+  <p>Um eine Projekt Set Datei zu erstellen gehen Sie &uuml;ber das Men&uuml; "Datei &gt; Neu &gt; Andere ..." und w&auml;hlen dann die Kategorie "Projekt Set" und den Typ "Projekt Set".</p>
+
+  <div class="mediaobject"><img src="images/newpsfpage0.gif"></div>
+
+  <p>Der Wizard f&uuml;r die Erstellung von neuen Projekt Sets hat zwei Seiten.</p>
+
+  <p>Auf der ersten Seiten k&ouml;nnen Sie den Namen der Projekt Set Datei spezifizieren und den Zielordner eingeben.</p>
+
+  <div class="mediaobject"><img src="images/newpsfpage1.gif"></div>
+
+  <p>Auf der zweiten Seite w&auml;hlen Sie die Projekte aus, die in das Projekt Set kommen. Nur gemeinsam genutzte Projekte im Arbeitsbereich k&ouml;nnen hinzugef&uuml;gt werden. Sie werden mit der Kennzeichnung (Version/Branch) hinzugef&uuml;gt, mit der das Projekt im Arbeitsbereich geladen ist. Der Dialog "Inhalt des Projekt Sets" besitzt einige Kn&ouml;pfe, um die Auswahl zu vereinfachen (z.B. W&auml;hle alle Projekte vom Arbeitsset). 
+  Wenn die Checkbox "Selektiere referenzierte" aktiviert ist, werden die nachfolgend selektierten Projekte auch ihre referenzierten Projekte selektieren. Das funktioniert auch rekursiv. Die Checkbox "Selektiere referenzierte" wendet ihre Funktion nicht auf bereits selektierte Projekte an.
+  Das Abw&auml;hlen eines Projektes, w&auml;hlt nicht automatisch seine referenzierten Projekte ab.</p>
+
+  <div class="mediaobject"><img src="images/newpsfpage2.gif"></div>
+
+  <p>Beachten Sie: Um eine Projekt Set Datei zu erstellen, k&ouml;nnen Sie auch das Men&uuml; "Datei &gt; Export" nutzen und darin "Team Projekt Set" w&auml;hlen.</p>
+
+  <h2><a name="d5e52"></a>Eine Projekt Set Datei bearbeiten</h2>
+
+  <p>Um eine Projekt Set Datei zu bearbeiten</p>
+
+  <div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: disc; "><li class="listitem">
+      <p>f&uuml;hren Sie einen Doppelklick auf die Projekt Set Datei in einer Eclipse-Sicht aus <span xmlns:date="http://exslt.org/dates-and-times" class="bold"><strong>oder</strong></span></p>
+    </li><li class="listitem">
+      <p>w&auml;hlen Sie "&Ouml;ffnen" oder "&Ouml;ffnen mit &gt; Projekt Set Editor"</p>
+    </li></ul></div>
+
+  <p>Ein Editor f&uuml;r das Projekt Set wird dann ge&ouml;ffnet. Wie dieser Editor funktioniert, wird im Dokument <a class="link" href="IDS_psfeditor.html" title="Projekt Set Editor">Projekt Set Editor</a> beschrieben.</p>
+
+  <h2><a name="d5e62"></a>Laden/Ersetzen von Projekten durch ein Projekt Set</h2>
+
+  <p>Die Projekte, auf die in einer Projekt Set Datei verwiesen wird, k&ouml;nnen zum Arbeitsbereich hinzugef&uuml;gt werden, indem</p>
+
+  <div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: disc; "><li class="listitem">
+      <p>mit einem Projekt Set Editor die Projekt Set Datei ge&ouml;ffnet wird und Sie dann die Funktionalit&auml;t des Editors nutzen <span xmlns:date="http://exslt.org/dates-and-times" class="bold"><strong>oder</strong></span></p>
+    </li><li class="listitem">
+      <p>das Men&uuml; "Lade/Ersetze Projekte" im Kontextmen&uuml; der Projekt Set Datei in einer Eclipse-Sicht benutzt wird <span xmlns:date="http://exslt.org/dates-and-times" class="bold"><strong>oder</strong></span></p>
+    </li><li class="listitem">
+      <p>das Men&uuml; "Lade/Ersetze Projekte rekursiv" im Kontextmen&uuml; der Projekt Set Datei in einer Eclipse-Sicht benutzt wird (die Bedeutung des rekursiven Ladens ist in <a class="link" href="IDS_psprojects.html" title="Projekt Set Projekt">Projekt Set Projekt </a> erkl&auml;rt) <span xmlns:date="http://exslt.org/dates-and-times" class="bold"><strong>oder</strong></span></p>
+    </li><li class="listitem">
+      <p>Sie in das Men&uuml; "Datei &gt; Import... " gehen und "Team Projekt Set" w&auml;hlen.</p>
+    </li></ul></div>
+
+  <p>Wenn ein Projekt bereits in den Arbeitsbereich geladen ist, werden Sie gefragt, ob der Inhalt &uuml;berschrieben werden soll.</p>
+
+  <h2><a name="d5e78"></a>Bemerkungen</h2>
+
+  <p>Angaben in Projekt Sets &uuml;ber den Ort von Repositories unterscheiden zwischen Servernamen und IP Adressen. Das bedeutet, dass es zu Problemen f&uuml;hrt, wenn ein Benutzer den Servername verwendet und ein anderer die IP Adresse des Servers (oder einen anderen Namen f&uuml;r den Server). So wird dann z.B. ein Projekt f&uuml;r einen Benutzer als "andere Version geladen" angezeigt, obwohl er die gleiche Version vom physikalisch identischen Server geladen hat. Es empfiehlt sich die Servernamen anstatt der IP Adressen zu verwenden.</p>
+
+  <p>Um Probleme beim Verschieben eines Repositories zu vermeiden, empfehlen wir f&uuml;r jedes Repository einen eigenen symbolischen Servernamen zu verwenden. Jeder Benutzer ordnet in seiner hosts Datei diesen symbolischen Namen die realen Servernamen oder die IP Adressen zu. Unter Windows NT/2000 liegt diese Datei im Verzeichnis C:\WINNT\system32\drivers\etc.</p>
+</div><div class="navfooter"><hr><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="VPMS_ProjektSets_Handbuch.html"><img src="images/prev.gif" alt=""></a>&nbsp;</td><td width="20%" align="center">&nbsp;</td><td width="40%" align="right">&nbsp;<a accesskey="n" href="IDS_psprojects.html"><img src="images/next.gif" alt=""></a></td></tr><tr><td width="40%" align="left" valign="top">
+			Projekt Sets
+		&nbsp;</td><td width="20%" align="center"><a accesskey="h" href="VPMS_ProjektSets_Handbuch.html"><img src="images/home.gif" alt="Zum Anfang"></a></td><td width="40%" align="right" valign="top">&nbsp;Projekt Set Projekt</td></tr></table></div><table xmlns:date="http://exslt.org/dates-and-times" border="1" cellspacing="0" cellpadding="2" align="center" width="100%"><tr><td align="left">
+    	&copy; 2023 DXC Technology Deutschland GmbH. All rights reserved.</td></tr></table></body></html>

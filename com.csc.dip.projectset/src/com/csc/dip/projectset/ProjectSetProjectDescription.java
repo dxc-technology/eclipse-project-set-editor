@@ -116,6 +116,7 @@ public class ProjectSetProjectDescription {
 			document = XMLUtil.createNewDocument();
 		} catch (ParserConfigurationException e) {
 			e.printStackTrace();
+			return;
 		}
 		
 		Element psProjectDescriptionElement = document.createElement(XML_ELEM_PS_PROJECT_DESCRIPTION);

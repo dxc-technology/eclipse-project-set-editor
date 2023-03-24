@@ -1,0 +1,9 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: %nlFragmentName
+Bundle-SymbolicName: com.csc.dip.projectset.help.nl1;singleton:=true
+Bundle-Version: 9.7.0
+Bundle-Vendor: %providerName
+Fragment-Host: com.csc.dip.projectset.help
+Automatic-Module-Name: com.csc.dip.projectset.help.nl1
+Bundle-Localization: nl_fragment

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<toc label="Project Sets" topic="html/VPMS_ProjectSets_Guide.html">
+   <topic label="Project Set" href="html/IDS_projectsets.html"/>
+   <topic label="Project Set Projects" href="html/IDS_psprojects.html"/>
+   <topic label="Project Set Editor" href="html/IDS_psfeditor.html"/>
+   <topic label="Project Set Preferences" href="html/IDS_psfpreferences.html"/>
+   <topic label="Working Sets" href="html/IDS_workingsets.html"/>
+</toc>

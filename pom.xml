@@ -3,12 +3,12 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
 	xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
 	<modelVersion>4.0.0</modelVersion>
+		
 	<groupId>com.csc.dip</groupId>
 	<artifactId>com.csc.dip.projectset-parent</artifactId>
-	<version>9.6.2</version>
-
+	<version>9.7.0</version>
 	<packaging>pom</packaging>
-
+	
 	<properties>
 		<tycho-version>1.2.0</tycho-version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -24,20 +24,21 @@
 		</repository>
 	</repositories>
 
-
+	
 	<modules>
 		<module>com.csc.dip.projectset</module> 
 		<module>com.csc.dip.projectset.nl1</module> 
-		<module>com.csc.dip.projectset-feature</module>
 		<module>com.csc.dip.projectset.cvs</module>
 		<module>com.csc.dip.projectset.svn</module>
+		<module>com.csc.dip.projectset.git</module>
 		<module>com.csc.dip.projectset.ui</module>
 		<module>com.csc.dip.projectset.ui.nl1</module>
+		<module>com.csc.dip.projectset.help</module>
+		<module>com.csc.dip.projectset.help.nl1</module>		
+		<module>com.csc.dip.projectset-feature</module>
 		<module>com.csc.dip.projectset-repository</module>
-		<module>com.csc.dip.projectset.git</module>
 	</modules>
 
-	
 	<build>
 		<plugins>
 			<plugin>
@@ -65,7 +66,7 @@
 						<environment>
 							<os>win32</os>
 							<ws>win32</ws>
-							<arch>x86</arch>
+							<arch>x86_64</arch>
 						</environment>
 						<environment>
 							<os>linux</os>

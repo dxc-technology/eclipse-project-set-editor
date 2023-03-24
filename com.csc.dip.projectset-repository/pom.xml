@@ -6,10 +6,9 @@
 	<parent>
 		<groupId>com.csc.dip</groupId>
 		<artifactId>com.csc.dip.projectset-parent</artifactId>
-		<version>9.6.2</version>
+		<version>9.7.0</version>
 	</parent>
 	
-	<groupId>com.csc.dip</groupId>
 	<artifactId>com.csc.dip.projectset-repository</artifactId>
 	<packaging>eclipse-repository</packaging>
 

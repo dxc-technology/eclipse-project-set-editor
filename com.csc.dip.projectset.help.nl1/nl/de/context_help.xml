@@ -1,0 +1,7 @@
+<contexts>
+   <context id="psfEditor">
+      <description>Mit diesem Editor kann man ein Projekt Set bearbeiten.</description>
+         <topic label="Projekt Set Editor" href="html/IDS_psfeditor.html"/>
+         <topic label="Projekt Sets" href="html/IDS_projectsets.html"/>
+   </context>
+</contexts>

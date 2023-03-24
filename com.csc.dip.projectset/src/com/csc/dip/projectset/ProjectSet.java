@@ -43,6 +43,7 @@ import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IProjectDescription;
 import org.eclipse.core.resources.IResource;
 import org.eclipse.core.resources.IWorkspace;
+import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
@@ -94,12 +95,11 @@ public class ProjectSet {
 	 */
 	public ProjectSet(IFile projectSetFile, boolean updateFromFile) {
 		super();
-		this.projectSetFile = projectSetFile;
-		if (updateFromFile) {
-			update();
+			this.projectSetFile = projectSetFile;
+			if (updateFromFile) {
+				update();
+			}
 		}
-	}
-
 	
 	/**
 	 * Creates a project set and set the projects as content of the project set.
@@ -216,7 +216,7 @@ public class ProjectSet {
 	 * and value is a list of project reference strings	
 	 */
 	protected Map<String, List<String>> loadProjectSetReferenceMap(IFile projectSetFile) {
-		if (!(projectSetFile.exists() && projectSetFile.isAccessible())) {
+		if(!(projectSetFile.getFullPath().toFile().exists() && projectSetFile.getFullPath().toFile().canRead()) && !(projectSetFile.exists() && projectSetFile.isAccessible())){
 			return null;
 		}
 		// map where key is the provider name and value is a list of project reference strings
@@ -225,7 +225,12 @@ public class ProjectSet {
 		Document document = null;
 
 		try {
-			document = XMLUtil.readDocument(projectSetFile.getLocation().toFile());
+			if(projectSetFile.getLocation() == null) {
+				File psFile = projectSetFile.getFullPath().toFile();
+				document = XMLUtil.readDocument(psFile);
+			}else {
+				document = XMLUtil.readDocument(projectSetFile.getLocation().toFile());	
+			}
 		} catch (ParserConfigurationException e) {
 			isFileCorrupted = true;
 			return null;
@@ -287,6 +292,7 @@ public class ProjectSet {
 			document = XMLUtil.createNewDocument();
 		} catch (ParserConfigurationException e) {
 			e.printStackTrace();
+			return;
 		}
 		
 		Element psfElement = document.createElement(XML_ELEM_PSF);
@@ -531,7 +537,6 @@ public class ProjectSet {
 
 		// collect project references
 		final List<ProjectSetEntry> entriesWithPreferredLocations = new ArrayList<ProjectSetEntry>();
-		int index = 0;
 		Iterator<ProjectSetEntry> prunedEntriesIterator = psEntryList.iterator();
 		while (prunedEntriesIterator.hasNext()) {
 			ProjectSetEntry psEntry = prunedEntriesIterator.next();
@@ -543,8 +548,6 @@ public class ProjectSet {
 			  (psEntry.getState() == ProjectSetEntry.STATE_NOT_LOADED)) {
 			  	entriesWithPreferredLocations.add(psEntry);
 			}
-			
-			index++;
 		}
 		
 		monitor.beginTask(MessageFormat.format(Messages.getString("ProjectSet.Loading_project_sets_for_provider__{0}_3"), new Object[] {provider}), entriesWithPreferredLocations.size() + 2 * psEntryList.size() + 1); //$NON-NLS-1$
@@ -599,6 +602,38 @@ public class ProjectSet {
 					addSubProjectSetsForCreated(context, projects, SubMonitor.convert(monitor, projectReferences.length), loadedEntries);
 				}
 			}
+			// perform recursive load for projects that already existed in the workspace (Those are not in projects array returned by "addToWorkspace")
+			if (recursive) {
+				List<IProject> existingProjects = new ArrayList<IProject>();
+				for (String projectReference : projectReferences) {
+					String projectName = prAnalyser.getProjectName(projectReference);
+					if (projectName != null) {
+						// check if project is in list of created (=> recursive load is handled above)
+						boolean isHandled = false;
+						if (projects != null) {
+							for (int i = 0; i < projects.length && !isHandled; i++) {
+								IProject handledProject = projects[i];
+								if (projectName.equals(handledProject.getName())) {
+									isHandled = true;	
+								}
+							}
+						}
+						if (!isHandled) {
+							// check if project exists
+							IProject projectInWorkspace = ResourcesPlugin.getWorkspace().getRoot().getProject(projectName);
+							if (projectInWorkspace.exists()) {
+								existingProjects.add(projectInWorkspace);
+							}
+						}
+					}
+				}
+				if (!existingProjects.isEmpty()) {
+					IProject[] existingProjectsArray = (IProject[]) existingProjects.toArray(new IProject[existingProjects.size()]);
+					addToLoaded(provider, existingProjectsArray, loadedEntries);
+					addSubProjectSetsForCreated(context, existingProjectsArray , SubMonitor.convert(monitor, existingProjectsArray.length), loadedEntries);				
+				}
+			}
+			
 			monitor.worked(projectReferences.length + 1);
 			
 			if(!problematicProjects.isEmpty()) {

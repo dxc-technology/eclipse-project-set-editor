@@ -111,26 +111,32 @@ public class AddProjectSetCollectionToWorkspaceAction extends AddProjectSetRecur
 		}
 		return psfcFiles;
 	}
-	
-	protected void addPSFFiles(IFile psfcFile, List<IFile> collectedPsfFiles) throws FileNotFoundException, IOException {
-        BufferedReader bufferedReader = new BufferedReader(new FileReader(psfcFile.getLocation().toFile()));
-        String line;
-        while((line = bufferedReader.readLine()) != null) {
-            String trimmedLine = line.trim();
-            if (!(trimmedLine.startsWith("#") || trimmedLine.startsWith("!"))) {
-            	IFile file = getFileForString(trimmedLine);
-        		if (file == null || (!file.exists())) {
-        			throw new FileNotFoundException(MessageFormat.format(Messages.getString("AddProjectSetCollectionToWorkspaceAction.File_0_not_found"), new Object[]{trimmedLine})); //$NON-NLS-1$
-        		} 
-	            if (trimmedLine.toLowerCase().endsWith("psfc")) {
-	            	addPSFFiles(file, collectedPsfFiles);	
-	            } else {
-	           		if (trimmedLine.toLowerCase().endsWith("psf")) {
-	           			collectedPsfFiles.add(file) ;			
-	           		}
-	           	}
-            }
-        }		
+
+	protected void addPSFFiles(IFile psfcFile, List<IFile> collectedPsfFiles)
+			throws FileNotFoundException, IOException {
+		try (FileReader fr = new FileReader(psfcFile.getLocation().toFile())) {
+			try (BufferedReader bufferedReader = new BufferedReader(fr)) {
+				String line;
+				while ((line = bufferedReader.readLine()) != null) {
+					String trimmedLine = line.trim();
+					if (!(trimmedLine.startsWith("#") || trimmedLine.startsWith("!"))) {
+						IFile file = getFileForString(trimmedLine);
+						if (file == null || (!file.exists())) {
+							throw new FileNotFoundException(MessageFormat.format(
+									Messages.getString("AddProjectSetCollectionToWorkspaceAction.File_0_not_found"), //$NON-NLS-1$
+									new Object[] { trimmedLine }));
+						}
+						if (trimmedLine.toLowerCase().endsWith("psfc")) {
+							addPSFFiles(file, collectedPsfFiles);
+						} else {
+							if (trimmedLine.toLowerCase().endsWith("psf")) {
+								collectedPsfFiles.add(file);
+							}
+						}
+					}
+				}
+			}
+		}
 	}
 	
 	protected IFile getFileForString(String fileName) {

@@ -1,0 +1,116 @@
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <title>Project Set Projects</title><link rel="stylesheet" type="text/css" href="book.css"><meta name="generator" content="DocBook XSL Stylesheets V1.79.1"><link rel="home" href="VPMS_ProjectSets_Guide.html" title="Project Sets"><link rel="up" href="VPMS_ProjectSets_Guide.html" title="Project Sets"><link rel="prev" href="IDS_projectsets.html" title="Project Set"><link rel="next" href="IDS_psfeditor.html" title="Project Set Editor"></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">Project Set Projects</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="IDS_projectsets.html"><img src="images/prev.gif" alt=""></a>&nbsp;</td><th width="60%" align="center">&nbsp;</th><td width="20%" align="right">&nbsp;<a accesskey="n" href="IDS_psfeditor.html"><img src="images/next.gif" alt=""></a></td></tr></table><hr></div><div class="chapter"><div class="titlepage"><div><div><h1 class="title"><a name="IDS_psprojects"></a>Project Set Projects</h1></div></div></div>
+	
+	<h2><a name="d5e85"></a>Concept</h2>
+	<p>
+		A projects set project (PS project) is a specialized project with one
+		<a class="link" href="IDS_projectsets.html" title="Project Set">project set file</a>
+		.
+		In the eclipse views a PS project is shown with the icon
+		<span class="inlinemediaobject"><img src="images/psfnature.gif"></span>
+	</p>
+	<p>
+		Each PS project has a file named .psproject that holds
+		the project relative name of the project set file.
+		When renaming the
+		project set file the file name in the .psproject file must be changed
+		accordingly.
+	</p>
+	<p>
+		PS projects enables the user to nest project sets by
+		using project set projects as entries in other project sets.
+		Project
+		sets can then be loaded recursively, which means that if a project set
+		X is loaded
+		that contains a project Y that is also a project set
+		project then the projects specified
+		in the project set file in Y are
+		also loaded.
+	</p>
+	<p>
+		Project set files can be used without a PS project but then they can't
+		be nested and
+		no
+		<a class="link" href="IDS_psprojects.html#IDS_psprojects_errormarkers" title="Project set error markers">error markers</a>
+		are created for them.
+	</p>
+	<h2><a name="IDS_psprojects_conflicts"></a>Conflicts</h2>
+	<p>
+		When using PS projects there can be tag conflicts. That means a project is
+		specified with different tags.
+		For example a project set contains a project X and a project Y that is a
+		PS project that contains X with
+		a different tag.
+	</p>
+	<p>
+		Conflicts can only be detected if the PS project that contains the conflict is
+		loaded
+		with the specified tag, e.g. in the above example the conflict is not
+		shown if the PS project Y is
+		not loaded or loaded with a different tag.
+	</p>
+	<p>
+		Analogous, there can be conflicts if different preferred folders have been
+		defined for one project.
+	</p>
+	<h2><a name="d5e99"></a>Create a project set project</h2>
+	<p>
+		To create a project set project use the menu "File &gt; New &gt;
+		Other...",
+		select the category "Project Set" and the type "Project Set
+		Project"
+	</p>
+	<p>
+		The wizard for a project set project automatically creates the .psproject
+		file and
+		the project set file with the projects specified in the wizard page. The
+		name of the
+		created project set file is the same as the name of the project but with the
+		extension .psf.
+	</p>
+	<h2><a name="IDS_psprojects_errormarkers"></a>Project set error markers</h2>
+	<p>
+		On changes in the workspace (e.g. changing a project set file in a
+		project set or loading a project)
+		all PS projects will be checked for errors and warnings. For every PS
+		project only the project set
+		file specified in the .psproject file will be checked for conflicts and
+		loading state. Other project
+		set files in the PS project are not checked.
+	</p>
+	<p>
+		The messages for the errors and warnings are listed in the eclipse
+		"Problems" view and the
+		affected resource will be marked with one of the following icons:
+	</p>
+	<div class="itemizedlist"><ul class="itemizedlist" style="list-style-type: disc; "><li class="listitem">
+			<p>
+				<span class="inlinemediaobject"><img src="images/markernotloaded.gif"></span>
+				Some of the projects specified in the project set are not loaded or
+				loaded with a different tag
+			</p>
+		</li><li class="listitem">
+			<p>
+				<span class="inlinemediaobject"><img src="images/markerconflict.gif"></span>
+				The project set contains conflicts (e.g. projects are specified in
+				different tags)
+			</p>
+		</li><li class="listitem">
+			<p>
+				<span class="inlinemediaobject"><img src="images/markererror.gif"></span>
+				The PS project has an error (e.g. the project set file specified in
+				.psproject file does not exist)
+			</p>
+		</li></ul></div>
+	<h2><a name="d5e121"></a>Loading projects of a PS project
+	</h2>
+	<p>
+		To load the projects defined by the project set of the
+		PS project use "Load/Replace Projects"
+		or "Load/Replace Projects
+		recursively" from the context menu of the PS project or the containing
+		project set file.
+	</p>
+</div><div class="navfooter"><hr><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="IDS_projectsets.html"><img src="images/prev.gif" alt=""></a>&nbsp;</td><td width="20%" align="center">&nbsp;</td><td width="40%" align="right">&nbsp;<a accesskey="n" href="IDS_psfeditor.html"><img src="images/next.gif" alt=""></a></td></tr><tr><td width="40%" align="left" valign="top">Project Set&nbsp;</td><td width="20%" align="center"><a accesskey="h" href="VPMS_ProjectSets_Guide.html"><img src="images/home.gif" alt="Home"></a></td><td width="40%" align="right" valign="top">&nbsp;Project Set Editor</td></tr></table></div><table xmlns:date="http://exslt.org/dates-and-times" border="1" cellspacing="0" cellpadding="2" align="center" width="100%"><tr><td align="left">
+    	&copy; 2023 DXC Technology Deutschland GmbH. All rights reserved.</td></tr></table></body></html>

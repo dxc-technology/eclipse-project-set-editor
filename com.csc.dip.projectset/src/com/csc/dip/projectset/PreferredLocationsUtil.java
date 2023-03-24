@@ -131,6 +131,7 @@ public class PreferredLocationsUtil {
 				document = XMLUtil.createNewDocument();
 			} catch (ParserConfigurationException e) {
 				e.printStackTrace();
+				return;
 			}
 	
 			Element psfElement = document.createElement(XML_ELEM_PREFERRED_PROJECT_LOCATIONS);

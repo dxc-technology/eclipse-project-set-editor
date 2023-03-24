@@ -287,4 +287,17 @@
          fragment="true"
          unpack="false"/>
 
+   <plugin
+         id="com.csc.dip.projectset.help"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"/>
+
+   <plugin
+         id="com.csc.dip.projectset.help.nl1"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         fragment="true"/>
+
 </feature>

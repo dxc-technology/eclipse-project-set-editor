@@ -1,5 +1,6 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
+Automatic-Module-Name: com.csc.dip.projectset.cvs
 Bundle-Name: %fragmentName
 Bundle-SymbolicName: com.csc.dip.projectset.cvs;singleton:=true
 Bundle-Version: 9.7.0

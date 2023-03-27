@@ -1,5 +1,6 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
+Automatic-Module-Name: com.csc.dip.projectset.ui.nl1
 Bundle-Name: %nlFragmentName
 Bundle-SymbolicName: com.csc.dip.projectset.ui.nl1; singleton:=true
 Bundle-Version: 9.7.0
